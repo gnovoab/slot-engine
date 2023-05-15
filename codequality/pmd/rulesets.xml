@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>PMD static code analysis rule set</description>
+
+
+    <rule ref="category/java/bestpractices.xml" />
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="LocalVariableCouldBeFinal" />
+        <exclude name="MethodArgumentCouldBeFinal" />
+        <exclude name="AtLeastOneConstructor" />
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ShortClassName">
+        <properties>
+            <property name="minimum" value="4" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml">
+        <exclude name="LoosePackageCoupling"/>
+        <exclude name="DataClass"/>
+        <exclude name="UseObjectForClearerAPI"/>
+    </rule>
+
+    <rule ref="category/java/documentation.xml">
+        <exclude name="UncommentedEmptyConstructor"/>
+        <exclude name="CommentSize"/>
+    </rule>
+
+
+    <rule ref="category/java/errorprone.xml" />
+    <rule ref="category/java/multithreading.xml" />
+    <rule ref="category/java/performance.xml" />
+    <rule ref="category/java/security.xml" />
+
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="separator" value="," />
+            <property name="maxDuplicateLiterals" value="4" />
+            <property name="minimumLength" value="3" />
+            <property name="skipAnnotations" value="true" />
+            <property name="exceptionList" value="" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="25" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/documentation.xml/CommentRequired">
+        <properties>
+            <property name="methodWithOverrideCommentRequirement" value="Ignored" />
+            <property name="accessorCommentRequirement" value="Ignored" />
+            <property name="classCommentRequirement" value="Required" />
+            <property name="fieldCommentRequirement" value="Ignored" />
+            <property name="publicMethodCommentRequirement" value="Required" />
+            <property name="protectedMethodCommentRequirement" value="Required" />
+            <property name="enumCommentRequirement" value="Required" />
+            <property name="serialVersionUIDCommentRequired" value="Ignored" />
+            <property name="serialPersistentFieldsCommentRequired" value="Ignored" />
+        </properties>
+    </rule>
+
+
+
+    <!-- Exclude test classes -->
+    <exclude-pattern>.*/src/test/.*</exclude-pattern>
+
+
+
+</ruleset>

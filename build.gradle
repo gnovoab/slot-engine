@@ -1,0 +1,104 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+
+	//Code scan
+	id 'checkstyle'
+	id 'pmd'
+	id 'jacoco'
+	id("com.github.spotbugs") version "5.0.14"
+}
+
+group = 'com.gabriel'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+
+repositories {
+	mavenCentral()
+}
+
+//Settings
+bootJar {
+	archiveFileName = 'gn-slot.jar'
+}
+
+
+//Tasks
+tasks.named('test') {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+checkstyle {
+	configFile = rootProject.file("codequality/checkstyle/checkstyle.xml")
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.required = false
+		html.required = true
+	}
+}
+
+pmd {
+	consoleOutput = false
+	ruleSetFiles = files("codequality/pmd/rulesets.xml")
+	ruleSets = []
+}
+
+
+spotbugs {
+	excludeFilter.set(file("codequality/spotbugs/excludeFilter.xml"))
+}
+
+// configure HTML report
+spotbugsMain {
+	reports {
+		html {
+			required = true
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
+}
+
+spotbugsTest {
+	reports {
+		html {
+			required = true
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.10"
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = false
+		csv.required = false
+		html.required = true
+	}
+}
+
+
+jacocoTestReport {
+	dependsOn test
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//Swagger
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.3'
+}
+
+
+

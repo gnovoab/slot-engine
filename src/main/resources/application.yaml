@@ -1,0 +1,30 @@
+spring.profiles.active: logger-info, services-edp
+
+info:
+  description: Slot API
+
+spring:
+  application:
+    name: slot-api
+    version: 1.0
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
+    groups-order: asc
+
+gnovoab:
+  openapi:
+    dev-url: "http://localhost:8080"
+    prod-url: "https://gnovoab-api.com"
+
+
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: "health,info"
+
+
+
