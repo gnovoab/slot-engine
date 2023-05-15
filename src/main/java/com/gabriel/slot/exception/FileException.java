@@ -3,9 +3,9 @@ package com.gabriel.slot.exception;
 import java.io.Serial;
 
 /**
- * Exception related transposing reels.
+ * Exception related processing files.
  */
-public class BoardException extends RuntimeException {
+public class FileException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class BoardException extends RuntimeException {
      * @param message
      * @param cause
      */
-    public BoardException(String message, Throwable cause) {
+    public FileException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -1,7 +1,6 @@
 package com.gabriel.slot.service;
 
-import com.gabriel.slot.domain.model.Reel;
-import com.gabriel.slot.domain.model.Symbol;
+import com.gabriel.slot.domain.mathmodel.Reel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class BoardServiceTest {
         Reel reel1 = new Reel();
         Reel reel2 = new Reel();
         Reel reel3 = new Reel();
-        Symbol[] symbolArray = { Symbol.BAR, Symbol.BELL, Symbol.CHERRY, Symbol.ORANGE, Symbol.LEMON, Symbol.PLUM };
+        String[] symbolArray = { "S1", "S2", "S3", "S4", "S5", "S6" };
 
         //Setup reels
         reel1.setId(1);
@@ -41,24 +40,24 @@ public class BoardServiceTest {
         reel3.setSymbols(Arrays.asList(symbolArray));
 
         //Create the board
-        Symbol[][] board = new Symbol[3][3];
+        String[][] board = new String[3][3];
 
         //Simulate first reel
         board =  boardService.transposeReel(board, 1, reel1.getSymbols(), 3);
-        Assertions.assertEquals(Symbol.CHERRY, board[0][0]);
-        Assertions.assertEquals(Symbol.ORANGE, board[1][0]);
-        Assertions.assertEquals(Symbol.LEMON, board[2][0]);
+        Assertions.assertEquals("S3", board[0][0]);
+        Assertions.assertEquals("S4", board[1][0]);
+        Assertions.assertEquals("S5", board[2][0]);
 
         //Simulate second reel on first item
         board =  boardService.transposeReel(board, 2, reel2.getSymbols(), 0);
-        Assertions.assertEquals(Symbol.PLUM, board[0][1]);
-        Assertions.assertEquals(Symbol.BAR, board[1][1]);
-        Assertions.assertEquals(Symbol.BELL, board[2][1]);
+        Assertions.assertEquals("S6", board[0][1]);
+        Assertions.assertEquals("S1", board[1][1]);
+        Assertions.assertEquals("S2", board[2][1]);
 
         //Simulate third reel on last item
         board =  boardService.transposeReel(board, 3, reel3.getSymbols(), 5);
-        Assertions.assertEquals(Symbol.LEMON, board[0][2]);
-        Assertions.assertEquals(Symbol.PLUM, board[1][2]);
-        Assertions.assertEquals(Symbol.BAR, board[2][2]);
+        Assertions.assertEquals("S5", board[0][2]);
+        Assertions.assertEquals("S6", board[1][2]);
+        Assertions.assertEquals("S1", board[2][2]);
     }
 }

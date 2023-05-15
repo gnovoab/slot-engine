@@ -3,9 +3,9 @@ package com.gabriel.slot.exception;
 import java.io.Serial;
 
 /**
- * Exception related transposing reels.
+ * Exception related where a resource is not found.
  */
-public class BoardException extends RuntimeException {
+public class XmlParseException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class BoardException extends RuntimeException {
      * @param message
      * @param cause
      */
-    public BoardException(String message, Throwable cause) {
+    public XmlParseException(String message, Throwable cause) {
         super(message, cause);
     }
 }

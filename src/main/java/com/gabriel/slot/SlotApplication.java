@@ -1,11 +1,14 @@
 package com.gabriel.slot;
 
-import com.gabriel.slot.service.SlotConfigService;
+import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.service.SlotConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+
+import java.util.Map;
 
 /**
  * Main application class
@@ -14,7 +17,10 @@ import org.springframework.context.event.EventListener;
 public class SlotApplication {
 
 	@Autowired
-	private transient SlotConfigService slotConfigService;
+	private transient SlotConfigurationService slotConfigService;
+
+	@Autowired
+	private transient Map<Integer, MathModel> mathModels;
 
 	/**
 	 * Main method
@@ -29,7 +35,8 @@ public class SlotApplication {
 	 */
 	@EventListener(ApplicationReadyEvent.class)
 	public void eventListenerExecute() {
-		slotConfigService.setupReels();
+		Map<Integer, MathModel> models = slotConfigService.loadMathModels();
+		this.mathModels.putAll(models);
 	}
 
 }

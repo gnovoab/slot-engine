@@ -8,17 +8,17 @@ import com.gabriel.slot.domain.object.ReelSetPositions;
  */
 public class SpinSimulation {
 
-    private Symbol[][] board;
+    private String[][] board;
     private ReelSetPositions reelSetPositions;
 
 
     //Getters and Setters
 
-    public Symbol[][] getBoard() {
+    public String[][] getBoard() {
         return board.clone();
     }
 
-    public void setBoard(Symbol[]... board) {
+    public void setBoard(String[]... board) {
         this.board = board.clone();
     }
 

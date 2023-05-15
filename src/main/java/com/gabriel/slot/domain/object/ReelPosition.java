@@ -1,8 +1,5 @@
 package com.gabriel.slot.domain.object;
 
-//Imports
-import com.gabriel.slot.domain.model.Symbol;
-
 /**
  * Class that represents a reel details for a position
  */
@@ -11,7 +8,7 @@ public class ReelPosition {
     //Fields
     private Integer reelNumber;
     private Integer position;
-    private Symbol symbol;
+    private String symbol;
 
 
     //Getters and Setters
@@ -32,11 +29,11 @@ public class ReelPosition {
         this.position = position;
     }
 
-    public Symbol getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(Symbol symbol) {
+    public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 }

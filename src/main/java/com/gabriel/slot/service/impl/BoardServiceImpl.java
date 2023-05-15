@@ -1,6 +1,5 @@
 package com.gabriel.slot.service.impl;
 
-import com.gabriel.slot.domain.model.Symbol;
 import com.gabriel.slot.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
      * @return
      */
     @Override
-    public Symbol[][] transposeReel(Symbol[][] board, int reelNumber, List<Symbol> symbols , int rngPosition) {
+    public String[][] transposeReel(String[][] board, int reelNumber, List<String> symbols , int rngPosition) {
 
         LOGGER.info("Transposing reel [{}] into the board", reelNumber);
 

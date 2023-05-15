@@ -2,6 +2,7 @@ package com.gabriel.slot;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.gabriel.slot.controller.SlotController;
+import com.gabriel.slot.domain.model.MathModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+
+import java.util.Map;
 
 /**
  * Basic Intergration tests
@@ -23,6 +26,9 @@ class SlotApplicationTests {
 
 	@Autowired
 	private SlotController controller;
+
+	@Autowired
+	private transient Map<Integer, MathModel> mathModels;
 
 	@Test
 	void contextLoads() {

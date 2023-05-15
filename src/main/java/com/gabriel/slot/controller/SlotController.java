@@ -2,9 +2,10 @@ package com.gabriel.slot.controller;
 
 import com.gabriel.slot.domain.api.SpinRequest;
 import com.gabriel.slot.domain.api.SpinResponse;
-import com.gabriel.slot.domain.model.Reel;
+import com.gabriel.slot.domain.model.MathModel;
 import com.gabriel.slot.domain.model.SpinResult;
 import com.gabriel.slot.domain.model.SpinSimulation;
+import com.gabriel.slot.exception.ResourceNotFoundException;
 import com.gabriel.slot.service.SpinService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -32,7 +33,7 @@ public class SlotController {
 
     //Fields
     @Autowired
-    private transient Map<Integer, Reel> reelSet;
+    private transient Map<Integer, MathModel> mathModels;
 
     @Autowired
     private transient SpinService spinService;
@@ -42,16 +43,16 @@ public class SlotController {
      * @return
      */
     @Operation(
-            summary = "Retrieve the slot reelset",
-            description = "Get the generated reelset at starup. The response is all the reels from the slot machine.",
+            summary = "Retrieve game settings from an id provided",
+            description = "Get the mathmodel details for a game. The response is all the reels from the slot machine.",
             tags = { "reelset", "get" })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Operation Success", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Map.class)) }),
             @ApiResponse(responseCode = "500", description = "The server encountered a problem.", content = @Content) })
 
-    @GetMapping(value = "/reels", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map> retrieveReelSet() {
-        return new ResponseEntity<>(reelSet, HttpStatus.OK);
+    @GetMapping(value = "/{gameId}/start", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MathModel> retrieveSlotDetails(@PathVariable int gameId) {
+        return new ResponseEntity<>(mathModels.get(gameId), HttpStatus.OK);
     }
 
 
@@ -66,9 +67,18 @@ public class SlotController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Spin executed successfully", content = { @Content(schema = @Schema(implementation = SpinResponse.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "500", description = "The server encountered a problem.", content = @Content) })
-    @PostMapping(path = "/spin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SpinResponse> spin(@RequestBody @Valid SpinRequest spinRequest) {
-        SpinSimulation spinSimulation = spinService.simulateSpin();
+    @PostMapping(path = "/{id}/spin/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SpinResponse> spin(@PathVariable int gameId, @PathVariable int spinType, @RequestBody @Valid SpinRequest spinRequest) {
+        MathModel mathModel = mathModels.get(gameId);
+
+        if(mathModel == null){
+            throw new ResourceNotFoundException("Game requested not found");
+        }
+        if (mathModel.getReelSets().get(spinType) == null) {
+            throw new ResourceNotFoundException("Spin type not found");
+        }
+
+        SpinSimulation spinSimulation = spinService.simulateSpin(mathModel.getReelSets().get(spinType).getReels());
         SpinResult spinResult = spinService.processSpin(spinSimulation, spinRequest.getSpin());
 
         SpinResponse response = new SpinResponse();

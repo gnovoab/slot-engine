@@ -1,0 +1,34 @@
+
+<mathModel id="1" name="Math Model 1" modelRtp="9400" symbols="B S G A C P">
+
+    <reelset id="1" type="base" name="Basic spin reel set">
+        <reels>
+            <reel id="1" symbols="A B G C G A G S A G A B A C A G A G A G"/>
+            <reel id="2" symbols="B S C S C S C S C A S C G S C G S C S A"/>
+            <reel id="3" symbols="S A G S A P B P S G P S G A S P S A S P"/>
+        </reels>
+    </reelset>
+    <lines>
+        <line id="1" positions="0 0 0"/>
+        <line id="2" positions="-1 -1 -1"/>
+        <line id="3" positions="1 1 1"/>
+        <line id="4" positions="-1 0 1"/>
+        <line id="5" positions="1 0 -1"/>
+        <line id="6" positions="0 -1 0"/>
+        <line id="7" positions="0 1 0"/>
+        <line id="8" positions="1 0 1"/>
+        <line id="9" positions="-1 0 -1"/>
+    </lines>
+    <win>
+        <winLineSets>
+            <winLineSet id="1">
+                <winLine id="1" symbol="3B" value="4000"/>
+                <winLine id="2" symbol="2B" value="2000"/>
+                <winLine id="3" symbol="3S" value="500"/>
+                <winLine id="4" symbol="3G" value="500"/>
+                <winLine id="5" symbol="3A" value="500"/>
+                <winLine id="6" symbol="2C" value="500"/>
+            </winLineSet>
+        </winLineSets>
+    </win>
+</mathModel>

@@ -1,6 +1,9 @@
 package com.gabriel.slot.service.impl;
 
-import com.gabriel.slot.domain.model.*;
+import com.gabriel.slot.domain.mathmodel.Reel;
+import com.gabriel.slot.domain.model.Spin;
+import com.gabriel.slot.domain.model.SpinResult;
+import com.gabriel.slot.domain.model.SpinSimulation;
 import com.gabriel.slot.domain.object.ReelPosition;
 import com.gabriel.slot.domain.object.ReelSetPositions;
 import com.gabriel.slot.service.BoardService;
@@ -23,9 +26,6 @@ public class SpinServiceImpl implements SpinService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SpinService.class);
 
     @Autowired
-    private transient Map<Integer, Reel> reelSet;
-
-    @Autowired
     private transient RngService rngService;
 
     @Autowired
@@ -39,15 +39,15 @@ public class SpinServiceImpl implements SpinService {
      * @return
      */
     @Override
-    public SpinSimulation simulateSpin() {
+    public SpinSimulation simulateSpin(Map<Integer, Reel> reels) {
         LOGGER.info("Simulating Spin...");
 
         //Variables
         ReelSetPositions reelSetPositions = new ReelSetPositions();
-        Symbol[][] board = new Symbol[3][reelSet.size()];
+        String[][] board = new String[3][reels.size()];
 
         //Iterate ove each reel
-        for (Map.Entry<Integer, Reel> entry : reelSet.entrySet()) {
+        for (Map.Entry<Integer, Reel> entry : reels.entrySet()) {
 
             if(LOGGER.isInfoEnabled()) {
                 LOGGER.info("Simulating spin on Reel #{}...", entry.getKey());
@@ -72,9 +72,8 @@ public class SpinServiceImpl implements SpinService {
             //Store POJO
             reelSetPositions.getReelsPositions().add(reelPosition);
 
-            if(LOGGER.isInfoEnabled()) {
-                LOGGER.info("Reel #{} spin simulated position[{}] symbol[{}]", reelPosition.getReelNumber(), reelPosition.getPosition(), reelPosition.getSymbol());
-            }
+            LOGGER.info("Reel #{} spin simulated position[{}] symbol[{}]", reelPosition.getReelNumber(), reelPosition.getPosition(), reelPosition.getSymbol());
+
         }
 
         //Create the object to be return
