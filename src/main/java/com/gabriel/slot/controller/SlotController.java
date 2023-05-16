@@ -1,8 +1,10 @@
 package com.gabriel.slot.controller;
 
-import com.gabriel.slot.domain.api.SpinRequest;
-import com.gabriel.slot.domain.api.SpinResponse;
-import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.dto.api.SpinRequest;
+import com.gabriel.slot.domain.dto.api.SpinResponse;
+import com.gabriel.slot.domain.dto.api.StartResponse;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
+import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.domain.model.SpinResult;
 import com.gabriel.slot.domain.model.SpinSimulation;
 import com.gabriel.slot.exception.ResourceNotFoundException;
@@ -36,6 +38,9 @@ public class SlotController {
     private transient Map<Integer, MathModel> mathModels;
 
     @Autowired
+    private transient Map<Integer, SlotGame> gamesCatalog;
+
+    @Autowired
     private transient SpinService spinService;
 
     /**
@@ -51,9 +56,26 @@ public class SlotController {
             @ApiResponse(responseCode = "500", description = "The server encountered a problem.", content = @Content) })
 
     @GetMapping(value = "/{gameId}/start", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MathModel> retrieveSlotDetails(@PathVariable int gameId) {
+    public ResponseEntity<StartResponse> retrieveSlotDetails(@PathVariable int gameId) {
 
-        return new ResponseEntity<>(mathModels.get(gameId), HttpStatus.OK);
+        //Get the slot game from id given
+        SlotGame slotGameSettings = gamesCatalog.get(gameId);
+
+        if(slotGameSettings == null)
+            throw new ResourceNotFoundException("Game not found");
+
+        //Get the MM details for the game
+        MathModel mathModel = mathModels.get(slotGameSettings.getMathModel());
+
+        //Create the payload
+        StartResponse response = new StartResponse();
+        response.setGameSettings(slotGameSettings);
+        response.setReelSet(mathModel.getReelSets().get(0));
+        response.setLines(mathModel.getLines());
+        response.setWinLineSet(mathModel.getWinInfo().getWinLineSets().get(0));
+
+        //Return the payload
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

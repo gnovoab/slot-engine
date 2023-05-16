@@ -4,8 +4,8 @@ package com.gabriel.slot.utils;
 
 //Imports
 
-import com.gabriel.slot.domain.model.MathModel;
-import com.gabriel.slot.domain.model.SlotGameCatalog;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
+import com.gabriel.slot.domain.model.game.SlotGameCatalog;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

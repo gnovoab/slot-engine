@@ -1,6 +1,7 @@
-package com.gabriel.slot.domain.api;
+package com.gabriel.slot.domain.dto.api;
 
-import com.gabriel.slot.domain.model.SlotGame;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.domain.model.mathmodel.Line;
 import com.gabriel.slot.domain.model.mathmodel.ReelSet;
 import com.gabriel.slot.domain.model.mathmodel.WinLineSet;
@@ -10,9 +11,10 @@ import java.util.List;
 /**
  * Payload Response for Start endpoint
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StartResponse {
 
-    private SlotGame slotParams;
+    private SlotGame gameSettings;
 
     private ReelSet reelSet;
 
@@ -23,12 +25,14 @@ public class StartResponse {
 
 
     //Getters and Setters
-    public SlotGame getSlotParams() {
-        return slotParams;
+
+
+    public SlotGame getGameSettings() {
+        return gameSettings;
     }
 
-    public void setSlotParams(SlotGame slotParams) {
-        this.slotParams = slotParams;
+    public void setGameSettings(SlotGame gameSettings) {
+        this.gameSettings = gameSettings;
     }
 
     public ReelSet getReelSet() {

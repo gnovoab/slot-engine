@@ -1,8 +1,8 @@
 package com.gabriel.slot.config;
 
 
-import com.gabriel.slot.domain.model.MathModel;
-import com.gabriel.slot.domain.model.SlotGame;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
+import com.gabriel.slot.domain.model.game.SlotGame;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,10 +24,10 @@ public class SlotConfig {
     }
 
     /**
-     * The Slot Game Data Configuration Parameters
+     * The Slot Game Catalog
      */
     @Bean
-    public Map<Integer, SlotGame> slotGames() {
+    public Map<Integer, SlotGame> gamesCatalog() {
         return new HashMap<>();
     }
 

@@ -1,10 +1,11 @@
 
 //Namespace
-package com.gabriel.slot.domain.model;
+package com.gabriel.slot.domain.model.game;
 
 //Imports
 
-import com.gabriel.slot.domain.model.slot.SlotConfigData;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.gabriel.slot.domain.model.game.SlotConfigData;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -13,6 +14,7 @@ import jakarta.xml.bind.annotation.XmlElement;
  * Class that represents a Slot
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SlotGame {
 
 	//Fields

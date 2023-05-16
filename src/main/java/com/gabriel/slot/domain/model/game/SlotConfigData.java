@@ -1,6 +1,6 @@
 
 //Namespace
-package com.gabriel.slot.domain.model.slot;
+package com.gabriel.slot.domain.model.game;
 
 //Imports
 

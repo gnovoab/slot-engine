@@ -1,4 +1,4 @@
-package com.gabriel.slot.domain.api;
+package com.gabriel.slot.domain.dto.api;
 
 //Imports
 import com.fasterxml.jackson.annotation.JsonInclude;

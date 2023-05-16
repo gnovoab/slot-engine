@@ -1,4 +1,4 @@
-package com.gabriel.slot.domain.object;
+package com.gabriel.slot.domain.dto.object;
 
 /**
  * Class that represents a reel details for a position

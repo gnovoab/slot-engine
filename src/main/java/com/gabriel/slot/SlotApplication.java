@@ -1,7 +1,7 @@
 package com.gabriel.slot;
 
-import com.gabriel.slot.domain.model.MathModel;
-import com.gabriel.slot.domain.model.SlotGame;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
+import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.service.SlotConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +24,7 @@ public class SlotApplication {
 	private transient Map<Integer, MathModel> mathModels;
 
 	@Autowired
-	private transient Map<Integer, SlotGame> slotGames;
+	private transient Map<Integer, SlotGame> gamesCatalog;
 
 	/**
 	 * Main method
@@ -42,7 +42,7 @@ public class SlotApplication {
 		Map<Integer, SlotGame> gameCatalog = slotConfigService.loadSlotGames();
 		Map<Integer, MathModel> models = slotConfigService.loadMathModels();
 
-		this.slotGames.putAll(gameCatalog);
+		this.gamesCatalog.putAll(gameCatalog);
 		this.mathModels.putAll(models);
 	}
 

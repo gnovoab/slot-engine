@@ -1,7 +1,7 @@
 package com.gabriel.slot.domain.model;
 
 //Imports
-import com.gabriel.slot.domain.object.ReelSetPositions;
+import com.gabriel.slot.domain.dto.object.ReelSetPositions;
 
 /**
  * Class that represents a Spin simulation

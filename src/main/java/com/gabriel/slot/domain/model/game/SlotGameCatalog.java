@@ -1,4 +1,4 @@
-package com.gabriel.slot.domain.model;
+package com.gabriel.slot.domain.model.game;
 
 import jakarta.xml.bind.annotation.*;
 

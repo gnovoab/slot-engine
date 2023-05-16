@@ -3,15 +3,13 @@
 package com.gabriel.slot.utils;
 
 //Imports
-import com.gabriel.slot.domain.model.MathModel;
-import com.gabriel.slot.domain.model.SlotGame;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Unit test class

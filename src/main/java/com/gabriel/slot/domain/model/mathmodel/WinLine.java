@@ -3,6 +3,7 @@
 package com.gabriel.slot.domain.model.mathmodel;
 
 //Imports
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -11,6 +12,8 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 /**
  * Class that represents a win line
  */
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @XmlRootElement (name="winLine")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WinLine {

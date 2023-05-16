@@ -1,5 +1,6 @@
 package com.gabriel.slot.domain.model.mathmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gabriel.slot.domain.model.mathmodel.oxm.ReelsMappingAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Class that represents a reel set
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ReelSet {
 

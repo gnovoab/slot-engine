@@ -1,6 +1,6 @@
 
 //Imports
-package com.gabriel.slot.domain.api;
+package com.gabriel.slot.domain.dto.api;
 
 //Imports
 import com.gabriel.slot.domain.model.Player;

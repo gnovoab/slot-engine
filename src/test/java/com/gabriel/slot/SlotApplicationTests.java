@@ -2,7 +2,7 @@ package com.gabriel.slot;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.gabriel.slot.controller.SlotController;
-import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
