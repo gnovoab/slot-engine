@@ -5,7 +5,6 @@ package com.gabriel.slot.domain.model.game;
 //Imports
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.gabriel.slot.domain.model.game.SlotConfigData;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.http.*;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Integration Test Class
@@ -46,7 +46,7 @@ public class GameStartEndpointTest {
         Assertions.assertNotNull(response.getBody());
         Assertions.assertNotNull(response.getBody().getGameSettings());
         Assertions.assertEquals(1,response.getBody().getGameSettings().getId());
-        Assertions.assertTrue( response.getBody().getGameSettings().getMathModel() > 0);
+        Assertions.assertTrue(response.getBody().getGameSettings().getMathModel() > 0);
         Assertions.assertNotNull(response.getBody().getGameSettings().getConfigData());
         Assertions.assertTrue(response.getBody().getGameSettings().getConfigData().getMaxLines() > 0);
     }

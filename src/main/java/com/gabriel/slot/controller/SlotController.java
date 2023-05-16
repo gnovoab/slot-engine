@@ -3,10 +3,10 @@ package com.gabriel.slot.controller;
 import com.gabriel.slot.domain.dto.api.SpinRequest;
 import com.gabriel.slot.domain.dto.api.SpinResponse;
 import com.gabriel.slot.domain.dto.api.StartResponse;
-import com.gabriel.slot.domain.model.mathmodel.MathModel;
-import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.domain.model.SpinResult;
 import com.gabriel.slot.domain.model.SpinSimulation;
+import com.gabriel.slot.domain.model.game.SlotGame;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import com.gabriel.slot.exception.ResourceNotFoundException;
 import com.gabriel.slot.service.SpinService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -61,8 +61,9 @@ public class SlotController {
         //Get the slot game from id given
         SlotGame slotGameSettings = gamesCatalog.get(gameId);
 
-        if(slotGameSettings == null)
+        if(slotGameSettings == null) {
             throw new ResourceNotFoundException("Game not found");
+        }
 
         //Get the MM details for the game
         MathModel mathModel = mathModels.get(slotGameSettings.getMathModel());

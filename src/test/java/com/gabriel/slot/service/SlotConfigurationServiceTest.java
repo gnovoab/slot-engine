@@ -1,7 +1,7 @@
 package com.gabriel.slot.service;
 
-import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import com.gabriel.slot.domain.model.game.SlotGame;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

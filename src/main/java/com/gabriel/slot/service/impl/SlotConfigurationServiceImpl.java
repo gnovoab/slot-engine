@@ -1,8 +1,8 @@
 package com.gabriel.slot.service.impl;
 
-import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.domain.model.game.SlotGameCatalog;
+import com.gabriel.slot.domain.model.mathmodel.MathModel;
 import com.gabriel.slot.exception.ParseException;
 import com.gabriel.slot.service.FileService;
 import com.gabriel.slot.service.SlotConfigurationService;
