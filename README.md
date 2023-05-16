@@ -13,13 +13,18 @@ Slot Machine
 * [Open API Definitions (YAML)](http://localhost:8080/v3/api-docs.yaml)
 * [Swagger Documentation](http://localhost:8080/swagger-ui.html)
 
-[//]: # (### Endpoints)
 
-[//]: # (#### {GET} /car-range)
 
-[//]: # (![]&#40;docs/diagrams/car-range.svg&#41;)
+### Endpoints
 
-[//]: # ()
-[//]: # (#### {GET} /capCode/{capCode}/products/related)
+#### {GET} /slot/{GameID}/start
 
-[//]: # (![]&#40;docs/diagrams/related.svg&#41;)
+![](docs/diagrams/start.svg)
+
+
+#### {POST} /slot/{GameID}/spin/{SpinType}
+
+
+
+### Game Catalog
+* [Fruits Machine](docs/games/fruits-machine.md)
