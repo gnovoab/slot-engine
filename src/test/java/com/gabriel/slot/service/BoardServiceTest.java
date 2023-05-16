@@ -1,6 +1,6 @@
 package com.gabriel.slot.service;
 
-import com.gabriel.slot.domain.mathmodel.Reel;
+import com.gabriel.slot.domain.model.mathmodel.Reel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

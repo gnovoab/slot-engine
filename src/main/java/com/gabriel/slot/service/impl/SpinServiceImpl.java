@@ -1,9 +1,9 @@
 package com.gabriel.slot.service.impl;
 
-import com.gabriel.slot.domain.mathmodel.Reel;
 import com.gabriel.slot.domain.model.Spin;
 import com.gabriel.slot.domain.model.SpinResult;
 import com.gabriel.slot.domain.model.SpinSimulation;
+import com.gabriel.slot.domain.model.mathmodel.Reel;
 import com.gabriel.slot.domain.object.ReelPosition;
 import com.gabriel.slot.domain.object.ReelSetPositions;
 import com.gabriel.slot.service.BoardService;

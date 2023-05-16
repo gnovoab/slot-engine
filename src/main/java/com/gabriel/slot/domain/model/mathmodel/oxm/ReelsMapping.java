@@ -1,11 +1,11 @@
 
 //Namespace
-package com.gabriel.slot.domain.mathmodel.oxm;
+package com.gabriel.slot.domain.model.mathmodel.oxm;
 
 //Imports
 
 
-import com.gabriel.slot.domain.mathmodel.Reel;
+import com.gabriel.slot.domain.model.mathmodel.Reel;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;

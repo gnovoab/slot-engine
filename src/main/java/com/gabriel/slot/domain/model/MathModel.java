@@ -1,8 +1,8 @@
 package com.gabriel.slot.domain.model;
 
-import com.gabriel.slot.domain.mathmodel.Line;
-import com.gabriel.slot.domain.mathmodel.ReelSet;
-import com.gabriel.slot.domain.mathmodel.WinInfo;
+import com.gabriel.slot.domain.model.mathmodel.Line;
+import com.gabriel.slot.domain.model.mathmodel.ReelSet;
+import com.gabriel.slot.domain.model.mathmodel.WinInfo;
 import jakarta.xml.bind.annotation.*;
 
 import java.util.List;

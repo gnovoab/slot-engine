@@ -5,6 +5,7 @@ package com.gabriel.slot.utils;
 //Imports
 
 import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.model.SlotGameCatalog;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 /**
  * Unit test class
  */
+@SuppressWarnings("checkstyle:lineLength")
 @ActiveProfiles("unitTest")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class XmlUtilsTest {
@@ -39,6 +41,24 @@ public class XmlUtilsTest {
         Assertions.assertEquals("test Math Model", mathModel.getName());
         Assertions.assertEquals(9345, mathModel.getModelRtp().intValue());
         Assertions.assertEquals(3, mathModel.getSymbols().size());
+    }
+
+    /**
+     * Test conversion from xml as string into object
+     * @throws Exception
+     */
+    @Test
+    public void xmlToObjTest2() throws Exception {
+
+        //Create xml
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <slotGameCatalog name=\"list of game\"><game id=\"1\" name=\"Simple 3 reel fruit slot\" mathModel=\"1\" progressiveRtp=\"0\"><configData maxBet=\"10\" maxWin=\"10\" maxLines=\"1\"><stakes>1 2 3 5 7 10 15 25 30 40 50 100</stakes><autoplay>10 25 50 100</autoplay></configData></game><game id=\"2\" name=\"Simple 3 reel fruit slot with Multiple paylines\" mathModel=\"1\" progressiveRtp=\"0\"></game></slotGameCatalog>";
+
+        //Transform
+        SlotGameCatalog slotGameCatalog = (SlotGameCatalog) XmlUtils.xmlToObj(xml, SlotGameCatalog.class);
+
+        //Verify
+        Assertions.assertNotNull(slotGameCatalog);
+        Assertions.assertEquals(1, slotGameCatalog.getGames().get(0).getId());
     }
 
     /**

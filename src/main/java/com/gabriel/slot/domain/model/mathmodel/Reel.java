@@ -1,4 +1,4 @@
-package com.gabriel.slot.domain.mathmodel;
+package com.gabriel.slot.domain.model.mathmodel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.xml.bind.annotation.XmlAccessType;

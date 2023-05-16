@@ -56,8 +56,6 @@ public final class XmlUtils {
         }
     }
 
-
-
     /**
      * Transform xml into obj
      * @param xmlInString

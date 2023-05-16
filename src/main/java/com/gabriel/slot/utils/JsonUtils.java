@@ -3,6 +3,7 @@
 package com.gabriel.slot.utils;
 
 //Imports
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -54,6 +55,7 @@ public final class JsonUtils {
 
             ObjectMapper mapper = new ObjectMapper();
 
+
             Object obj = mapper.readValue(jsonInString, className);
 
             return obj;
@@ -63,6 +65,8 @@ public final class JsonUtils {
             return null;
         }
     }
+
+
 
     /**
      * From a json file to Obj

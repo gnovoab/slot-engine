@@ -1,6 +1,6 @@
-package com.gabriel.slot.domain.mathmodel;
+package com.gabriel.slot.domain.model.mathmodel;
 
-import com.gabriel.slot.domain.mathmodel.oxm.ReelsMappingAdapter;
+import com.gabriel.slot.domain.model.mathmodel.oxm.ReelsMappingAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;

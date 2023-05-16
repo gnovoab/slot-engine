@@ -30,3 +30,7 @@ management:
 
 mathmodel:
   folder-location: "/mathModels/"
+
+games-catalog:
+  folder-location: "/slot/"
+  file-name: "slot-game-catalog.xml"

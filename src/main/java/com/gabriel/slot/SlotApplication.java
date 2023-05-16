@@ -1,6 +1,7 @@
 package com.gabriel.slot;
 
 import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.model.SlotGame;
 import com.gabriel.slot.service.SlotConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +23,9 @@ public class SlotApplication {
 	@Autowired
 	private transient Map<Integer, MathModel> mathModels;
 
+	@Autowired
+	private transient Map<Integer, SlotGame> slotGames;
+
 	/**
 	 * Main method
 	 * @param args
@@ -35,7 +39,10 @@ public class SlotApplication {
 	 */
 	@EventListener(ApplicationReadyEvent.class)
 	public void eventListenerExecute() {
+		Map<Integer, SlotGame> gameCatalog = slotConfigService.loadSlotGames();
 		Map<Integer, MathModel> models = slotConfigService.loadMathModels();
+
+		this.slotGames.putAll(gameCatalog);
 		this.mathModels.putAll(models);
 	}
 

@@ -1,6 +1,8 @@
 package com.gabriel.slot.service.impl;
 
 import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.model.SlotGame;
+import com.gabriel.slot.domain.model.SlotGameCatalog;
 import com.gabriel.slot.exception.ParseException;
 import com.gabriel.slot.service.FileService;
 import com.gabriel.slot.service.SlotConfigurationService;
@@ -28,9 +30,46 @@ public class SlotConfigurationServiceImpl implements SlotConfigurationService {
     @Value("${mathmodel.folder-location}")
     private transient String mathModelsFolder;
 
+    @Value("${games-catalog.folder-location}")
+    private transient String gamesCatalogPath;
+
+    @Value("${games-catalog.file-name}")
+    private transient String gamesCatalogFileName;
+
+
     @Autowired
     private transient FileService fileService;
 
+
+    /**
+     * @return 
+     */
+    @Override
+    public Map<Integer, SlotGame> loadSlotGames() {
+
+        try{
+            LOGGER.info("Loading Slot Catalog Games...");
+
+            //Create the object
+            Map<Integer, SlotGame> games = new ConcurrentHashMap<>();
+
+            //Build the game catalog folder path
+            String path = new ClassPathResource(gamesCatalogPath).getFile().getPath();
+
+            //Parse the XML into an Object
+            SlotGameCatalog slotGameCatalog = (SlotGameCatalog) XmlUtils.xmlFileToObj(path, gamesCatalogFileName, SlotGameCatalog.class);
+
+            //Populate Map
+            for (SlotGame slotGame : slotGameCatalog.getGames()) {
+                games.put(slotGame.getId(), slotGame);
+            }
+            return games;
+        }
+        catch (IOException e){
+            LOGGER.error("IOException while parsing Slot Game Catalog", e);
+            throw new ParseException("IOException while parsing Slot Game Catalog", e);
+        }
+    }
 
     /**
      * @return

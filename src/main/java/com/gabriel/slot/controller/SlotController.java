@@ -52,6 +52,7 @@ public class SlotController {
 
     @GetMapping(value = "/{gameId}/start", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MathModel> retrieveSlotDetails(@PathVariable int gameId) {
+
         return new ResponseEntity<>(mathModels.get(gameId), HttpStatus.OK);
     }
 

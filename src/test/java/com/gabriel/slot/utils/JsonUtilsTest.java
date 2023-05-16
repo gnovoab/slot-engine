@@ -4,16 +4,20 @@ package com.gabriel.slot.utils;
 
 //Imports
 import com.gabriel.slot.domain.model.MathModel;
+import com.gabriel.slot.domain.model.SlotGame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Unit test class
  */
+
+
 @ActiveProfiles("unitTest")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class JsonUtilsTest {
@@ -56,6 +60,4 @@ public class JsonUtilsTest {
         Assertions.assertEquals(9345, mathModel.getModelRtp().intValue());
         Assertions.assertEquals(3, mathModel.getSymbols().size());
     }
-
-
 }
