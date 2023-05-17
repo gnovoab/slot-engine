@@ -4,6 +4,7 @@ import com.gabriel.slot.domain.model.mathmodel.WinLine;
 import com.gabriel.slot.service.LineService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Class that handles operations regarding Slot line processing
  */
+@SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops"})
 @Service
 public class LineServiceImpl implements LineService {
 
@@ -37,12 +39,13 @@ public class LineServiceImpl implements LineService {
 
 
     /**
+     * Return repetitive symbol in a line
      * @param line
      * @return
      */
     @Override
-    public  Map<String,Integer> fetchRepeatedSymbol(String line) {
-        Map<String,Integer> repeatedSymbols = new ConcurrentHashMap<>();
+    public  Map<String,List<Integer>> fetchRepeatedSymbol(String line) {
+        Map<String, List<Integer>> repeatedSymbols = new ConcurrentHashMap<>();
 
         int index = 0;
 
@@ -62,7 +65,18 @@ public class LineServiceImpl implements LineService {
             }
 
             if(currentCount > 1 && i >= index){
-                repeatedSymbols.put(String.valueOf(currentChar), currentCount);
+
+                List<Integer> occurrence = repeatedSymbols.get(String.valueOf(currentChar));
+                if (occurrence == null){
+                    occurrence = new ArrayList<>();
+                    occurrence.add(currentCount);
+                    repeatedSymbols.put(String.valueOf(currentChar), occurrence);
+                }
+                else{
+                    occurrence.add(currentCount);
+                    repeatedSymbols.put(String.valueOf(currentChar), occurrence);
+                }
+
                 index = j2;
 
             }
@@ -74,13 +88,15 @@ public class LineServiceImpl implements LineService {
 
     /**
      * Calculate win in line
+     *
      * @param symbol
      * @param occurrence
      * @param winLineSet
+     * @param stake
      * @return
      */
     @Override
-    public int calculateWin(String symbol, int occurrence, List<WinLine> winLineSet) {
+    public int calculateWin(String symbol, int occurrence, List<WinLine> winLineSet, Short stake) {
         int winAmount = 0;
         for (WinLine winLine: winLineSet) {
             if(winLine.getSymbol().equals(occurrence+symbol)){

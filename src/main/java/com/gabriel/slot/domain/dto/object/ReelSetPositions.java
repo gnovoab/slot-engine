@@ -1,6 +1,7 @@
 package com.gabriel.slot.domain.dto.object;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
 public class ReelSetPositions {
 
     //Fields
-    private List<ReelPosition> reelsPositions;
+    private List<ReelPosition> reelsPositions = new ArrayList<>();
 
 
 

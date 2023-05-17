@@ -115,8 +115,8 @@ public class SpinServiceImpl implements SpinService {
         for (Line line : lines) {
             StringBuilder symbolsInLine = new StringBuilder();
             int lineWin = 0;
-            if(line.getId() < spin.getNumLines()){
-                LOGGER.info("Evaluating line #{} for spin with txID[{}] ",line, txId);
+            if(line.getId() <= spin.getNumLines()){
+                LOGGER.info("Evaluating line #{} for spin with txID[{}] ",line.getId(), txId);
 
                 //Represent the line in a String
                 int reelNo=0;
@@ -130,15 +130,17 @@ public class SpinServiceImpl implements SpinService {
 
                 if(maxConsecutiveOccurrences > 1){
                     //Retrieve repeated symbols
-                    Map<String,Integer> symbolsOccurrences = lineService.fetchRepeatedSymbol(symbolsInLine.toString());
-                    for (Map.Entry<String, Integer> entry : symbolsOccurrences.entrySet()) {
-                       lineWin += lineService.calculateWin(entry.getKey(), entry.getValue(), winLineSet);
+                    Map<String, List<Integer>> symbolsOccurrences = lineService.fetchRepeatedSymbol(symbolsInLine.toString());
+                    for (Map.Entry<String, List<Integer>> entry : symbolsOccurrences.entrySet()) {
+                        for (int occurrence:entry.getValue()) {
+                            lineWin += lineService.calculateWin(entry.getKey(), occurrence, winLineSet, spin.getStake());
+                        }
                     }
                     winLines.put(line.getId(), lineWin);
                     totalWin += lineWin;
                 }
 
-                LOGGER.info("Line #{} for spin with txID[{}] has a win of [{}]",line, txId, lineWin);
+                LOGGER.info("Line #{} for spin with txID[{}] has a win of [{}]",line.getId(), txId, lineWin);
             }
         }
 

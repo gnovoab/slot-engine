@@ -8,7 +8,8 @@ import java.util.Map;
 @SuppressWarnings("PMD.CommentRequired")
 public interface LineService {
     int maxConsecutiveOccurrences(String line);
-    Map<String,Integer> fetchRepeatedSymbol(String line);
 
-    int calculateWin(String symbol, int occurrence, List<WinLine> winLineSet);
+    Map<String,List<Integer>> fetchRepeatedSymbol(String line);
+
+    int calculateWin(String symbol, int occurrence, List<WinLine> winLineSet, Short stake);
 }

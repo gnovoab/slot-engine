@@ -11,6 +11,7 @@ public class SpinResult {
     //Fields
     private String transactionId;
     private Map<Integer, Integer> lines;
+
     private Integer totalWin;
 
 

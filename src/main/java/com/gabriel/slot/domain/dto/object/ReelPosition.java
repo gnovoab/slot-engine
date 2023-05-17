@@ -7,7 +7,7 @@ public class ReelPosition {
 
     //Fields
     private Integer reelNumber;
-    private Integer position;
+    private Integer position = -1;
     private String symbol;
 
 

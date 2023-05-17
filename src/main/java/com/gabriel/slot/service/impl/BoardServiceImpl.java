@@ -52,5 +52,25 @@ public class BoardServiceImpl implements BoardService {
         return board;
     }
 
+    /**
+     * @param board
+     * @return
+     */
+    @Override
+    public String printedBoard(String[][] board) {
+
+        int row = board.length;
+        int colum = board[0].length;
+        StringBuilder printedBoard = new StringBuilder();
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < colum; j++) {
+                printedBoard.append('[').append(board[i][j]).append(']');
+            }
+            printedBoard.append(System.lineSeparator());
+        }
+
+        return printedBoard.toString();
+    }
+
 
 }
