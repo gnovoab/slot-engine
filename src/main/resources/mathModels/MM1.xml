@@ -1,5 +1,5 @@
 
-<mathModel id="1" name="Math Model 1" modelRtp="9400" symbols="B S G A C P">
+<mathModel id="1" name="Math Model 1" modelRtp="9400">
 
     <reelset id="1" type="base" name="Basic spin reel set">
         <reels>

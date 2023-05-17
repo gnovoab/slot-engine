@@ -9,25 +9,27 @@ import java.util.Map;
 public class SpinResult {
 
     //Fields
-    private Long transactionId;
-    private Map<Integer, Boolean> lines;
+    private String transactionId;
+    private Map<Integer, Integer> lines;
     private Integer totalWin;
 
 
     //Getters and Setters
-    public Long getTransactionId() {
+
+
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
-    public Map<Integer, Boolean> getLines() {
+    public Map<Integer, Integer> getLines() {
         return lines;
     }
 
-    public void setLines(Map<Integer, Boolean> lines) {
+    public void setLines(Map<Integer, Integer> lines) {
         this.lines = lines;
     }
 
@@ -38,5 +40,4 @@ public class SpinResult {
     public void setTotalWin(Integer totalWin) {
         this.totalWin = totalWin;
     }
-
 }

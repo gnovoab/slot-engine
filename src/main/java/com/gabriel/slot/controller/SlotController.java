@@ -103,7 +103,7 @@ public class SlotController {
         }
 
         SpinSimulation spinSimulation = spinService.simulateSpin(mathModel.getReelSets().get(spinType).getReels());
-        SpinResult spinResult = spinService.processSpin(spinSimulation, spinRequest.getSpin());
+        SpinResult spinResult = spinService.processSpin(spinSimulation.getBoard(), mathModel.getLines(), mathModel.getWinInfo().getWinLineSets().get(1).getWinLines(), spinRequest.getSpin());
 
         SpinResponse response = new SpinResponse();
         response.setSpinResult(spinResult);

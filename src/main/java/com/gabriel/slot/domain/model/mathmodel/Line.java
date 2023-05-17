@@ -40,5 +40,4 @@ public class Line {
         this.positions = positions;
     }
 
-
 }

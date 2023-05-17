@@ -5,8 +5,11 @@ import com.gabriel.slot.domain.dto.object.ReelSetPositions;
 import com.gabriel.slot.domain.model.Spin;
 import com.gabriel.slot.domain.model.SpinResult;
 import com.gabriel.slot.domain.model.SpinSimulation;
+import com.gabriel.slot.domain.model.mathmodel.Line;
 import com.gabriel.slot.domain.model.mathmodel.Reel;
+import com.gabriel.slot.domain.model.mathmodel.WinLine;
 import com.gabriel.slot.service.BoardService;
+import com.gabriel.slot.service.LineService;
 import com.gabriel.slot.service.RngService;
 import com.gabriel.slot.service.SpinService;
 import org.slf4j.Logger;
@@ -14,7 +17,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class that handles spin operations
@@ -30,6 +36,9 @@ public class SpinServiceImpl implements SpinService {
 
     @Autowired
     private transient BoardService boardService;
+
+    @Autowired
+    private transient LineService lineService;
 
 
 
@@ -85,20 +94,63 @@ public class SpinServiceImpl implements SpinService {
         return spinSimulation;
     }
 
-
     /**
      * Process and evaluate a spin
      *
-     * @param spinSimulation
+     * @param board
+     * @param lines
+     * @param winLineSet
      * @param spin
-     * @return result
+     * @return
      */
     @Override
-    public SpinResult processSpin(SpinSimulation spinSimulation, Spin spin) {
+    public SpinResult processSpin(String[][] board, List<Line> lines, List<WinLine> winLineSet, Spin spin) {
 
 
-        return null;
+        //Generate transaction ID
+        String txId = UUID.randomUUID().toString();
+        Map<Integer, Integer> winLines = new ConcurrentHashMap<>();
+        int totalWin = 0;
+
+        for (Line line : lines) {
+            StringBuilder symbolsInLine = new StringBuilder();
+            int lineWin = 0;
+            if(line.getId() < spin.getNumLines()){
+                LOGGER.info("Evaluating line #{} for spin with txID[{}] ",line, txId);
+
+                //Represent the line in a String
+                int reelNo=0;
+                for (short position : line.getPositions()){
+                    symbolsInLine.append(board[position+1][reelNo]);
+                    reelNo++;
+                }
+
+                //Get the maxConsecutiveOccurrences
+                int maxConsecutiveOccurrences = lineService.maxConsecutiveOccurrences(symbolsInLine.toString());
+
+                if(maxConsecutiveOccurrences > 1){
+                    //Retrieve repeated symbols
+                    Map<String,Integer> symbolsOccurrences = lineService.fetchRepeatedSymbol(symbolsInLine.toString());
+                    for (Map.Entry<String, Integer> entry : symbolsOccurrences.entrySet()) {
+                       lineWin += lineService.calculateWin(entry.getKey(), entry.getValue(), winLineSet);
+                    }
+                    winLines.put(line.getId(), lineWin);
+                    totalWin += lineWin;
+                }
+
+                LOGGER.info("Line #{} for spin with txID[{}] has a win of [{}]",line, txId, lineWin);
+            }
+        }
+
+        //Create the object
+        SpinResult spinResult = new SpinResult();
+        spinResult.setTransactionId(txId);
+        spinResult.setLines(winLines);
+        spinResult.setTotalWin(totalWin);
+
+        return spinResult;
     }
+
 
 
 }

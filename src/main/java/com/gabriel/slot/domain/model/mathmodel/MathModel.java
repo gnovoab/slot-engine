@@ -21,9 +21,6 @@ public class MathModel {
     @XmlAttribute
     private Integer modelRtp;
 
-    @XmlAttribute
-    private List<String> symbols;
-
     @XmlElement (name="reelset")
     private List<ReelSet> reelSets;
 
@@ -87,11 +84,5 @@ public class MathModel {
         this.winInfo = winInfo;
     }
 
-    public List<String> getSymbols() {
-        return symbols;
-    }
 
-    public void setSymbols(List<String> symbols) {
-        this.symbols = symbols;
-    }
 }

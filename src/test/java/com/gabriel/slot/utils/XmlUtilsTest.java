@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.Arrays;
-
 
 /**
  * Unit test class
@@ -40,7 +38,6 @@ public class XmlUtilsTest {
         Assertions.assertEquals(416, mathModel.getId().intValue());
         Assertions.assertEquals("test Math Model", mathModel.getName());
         Assertions.assertEquals(9345, mathModel.getModelRtp().intValue());
-        Assertions.assertEquals(3, mathModel.getSymbols().size());
     }
 
     /**
@@ -72,7 +69,6 @@ public class XmlUtilsTest {
         mathModel.setId(416);
         mathModel.setName("test Math Model");
         mathModel.setModelRtp(9345);
-        mathModel.setSymbols(Arrays.asList("S1", "S2", "S3"));
 
         String xml = (String) XmlUtils.objToXml(mathModel);
 
