@@ -135,12 +135,12 @@ public class LineServiceTest {
         List<WinLine> winLineSet = new ArrayList<>();
         WinLine winLine = new WinLine();
         winLine.setSymbol("4a");
-        winLine.setValue(4000);
+        winLine.setValue(40);
 
         winLineSet.add(winLine);
 
         Spin spin = new Spin();
-        spin.setStake((short) 10);
+        spin.setStake((short) 100);
 
         int win = lineService.calculateWin("a", 4, winLineSet, spin.getStake());
         Assertions.assertEquals(4000, win);

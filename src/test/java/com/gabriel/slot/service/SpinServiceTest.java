@@ -156,7 +156,7 @@ public class SpinServiceTest {
         winLineSet.add(winLine4);
 
         Spin spin = new Spin();
-        spin.setStake((short) 10);
+        spin.setStake((short) 1);
         spin.setNumLines(3);
 
         SpinResult result = spinService.processSpin(board, lines, winLineSet, spin);

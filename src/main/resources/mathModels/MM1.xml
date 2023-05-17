@@ -22,12 +22,12 @@
     <win>
         <winLineSets>
             <winLineSet id="1">
-                <winLine id="1" symbol="3B" value="4000"/>
-                <winLine id="2" symbol="2B" value="2000"/>
-                <winLine id="3" symbol="3S" value="500"/>
-                <winLine id="4" symbol="3G" value="500"/>
-                <winLine id="5" symbol="3A" value="500"/>
-                <winLine id="6" symbol="2C" value="500"/>
+                <winLine id="1" symbol="3B" value="40"/>
+                <winLine id="2" symbol="2B" value="20"/>
+                <winLine id="3" symbol="3S" value="5"/>
+                <winLine id="4" symbol="3G" value="5"/>
+                <winLine id="5" symbol="3A" value="5"/>
+                <winLine id="6" symbol="2C" value="5"/>
             </winLineSet>
         </winLineSets>
     </win>

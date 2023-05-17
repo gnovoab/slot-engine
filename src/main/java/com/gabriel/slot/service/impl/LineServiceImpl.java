@@ -100,7 +100,7 @@ public class LineServiceImpl implements LineService {
         int winAmount = 0;
         for (WinLine winLine: winLineSet) {
             if(winLine.getSymbol().equals(occurrence+symbol)){
-                winAmount = winLine.getValue();
+                winAmount = winLine.getValue() * stake;
             }
         }
         return winAmount;
