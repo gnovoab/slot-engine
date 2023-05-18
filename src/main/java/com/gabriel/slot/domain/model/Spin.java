@@ -12,10 +12,10 @@ import jakarta.validation.constraints.NotNull;
 public class Spin {
 
     //Fields
-    @Min(0)
+    @Min(1)
     @NotNull
     private Short stake;
-    @Min(0)
+    @Min(1)
     @NotNull
     private Integer numLines;
     private Boolean autoSpin;

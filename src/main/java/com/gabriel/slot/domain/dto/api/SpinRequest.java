@@ -5,13 +5,18 @@ package com.gabriel.slot.domain.dto.api;
 //Imports
 import com.gabriel.slot.domain.model.Player;
 import com.gabriel.slot.domain.model.Spin;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Class that represents a request for a spin action
  */
 public class SpinRequest {
     //Fields
+
+    @NotNull
     private Player player;
+
+    @NotNull
     private Spin spin;
 
     //Getters and Setters

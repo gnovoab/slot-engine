@@ -7,7 +7,6 @@ import com.gabriel.slot.domain.model.SpinSimulation;
 import com.gabriel.slot.domain.model.mathmodel.Line;
 import com.gabriel.slot.domain.model.mathmodel.Reel;
 import com.gabriel.slot.domain.model.mathmodel.WinLine;
-import com.gabriel.slot.utils.JsonUtils;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Unit test class

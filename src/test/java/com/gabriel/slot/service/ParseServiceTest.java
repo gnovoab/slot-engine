@@ -1,30 +1,33 @@
+package com.gabriel.slot.service;
 
-//Namespace
-package com.gabriel.slot.utils;
-
-//Imports
-
+import com.gabriel.slot.domain.model.game.SlotGame;
 import com.gabriel.slot.domain.model.mathmodel.MathModel;
+import com.gabriel.slot.utils.JsonUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+
+import java.util.Map;
 
 /**
  * Unit test class
  */
-
-
 @ActiveProfiles("unitTest")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class JsonUtilsTest {
+public class ParseServiceTest {
 
-    /**
-     * Test conversion from xml as string into object
-     * @throws Exception
-     */
+    //Fields
+    @Autowired
+    private transient ParseService parseService;
+
+    @Autowired
+    private transient Map<Integer, SlotGame> gamesCatalog;
+
     @Test
-    public void objToJsonTest() throws Exception {
+    public void objToJsonTest() {
+
         MathModel mathModel = new MathModel();
         mathModel.setId(416);
         mathModel.setName("test Math Model");
@@ -35,12 +38,9 @@ public class JsonUtilsTest {
         Assertions.assertTrue(json.indexOf("test Math Model") > -1);
     }
 
-    /**
-     * Test conversion from xml as string into object
-     * @throws Exception
-     */
     @Test
-    public void jsonToObjTest() throws Exception {
+    public void jsonToObjTest() {
+
         //Create json
         String json = "{\"id\":416,\"name\":\"test Math Model\",\"modelRtp\":9345}";
 

@@ -1,15 +1,13 @@
 package com.gabriel.slot.service;
 
 import com.gabriel.slot.domain.model.mathmodel.Reel;
-import com.gabriel.slot.utils.JsonUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.util.StringUtils;
 
-import java.util.*;
+import java.util.Arrays;
 
 /**
  * Unit test class

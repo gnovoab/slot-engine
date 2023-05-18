@@ -2,6 +2,7 @@ package com.gabriel.slot.controller.handler;
 
 import com.gabriel.slot.domain.dto.api.ApiErrorResponse;
 import com.gabriel.slot.exception.*;
+import jakarta.validation.ValidationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,11 @@ public class CustomResponseEntityExceptionHandler {
     @ExceptionHandler(XmlParseException.class)
     public ResponseEntity<ApiErrorResponse> exceptionHandler(XmlParseException ex, WebRequest request) {
         return new ResponseEntity<>(new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ApiErrorResponse> exceptionHandler(ValidationException ex, WebRequest request) {
+        return new ResponseEntity<>(new ApiErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
