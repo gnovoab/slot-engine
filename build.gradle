@@ -11,8 +11,8 @@ plugins {
 }
 
 group = 'com.gabriel'
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_20
+targetCompatibility = JavaVersion.VERSION_20
 
 
 repositories {
@@ -110,6 +110,9 @@ dependencies {
 
 	//Spotbugs
 	implementation "com.github.spotbugs:spotbugs-annotations:4.1.2"
+
+	//AOP
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 
 
