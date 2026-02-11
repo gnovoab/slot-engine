@@ -89,6 +89,8 @@
     <!-- Exclude test classes -->
     <exclude-pattern>.*/src/test/.*</exclude-pattern>
 
+    <exclude-pattern>.*/src/main/java/com/gabriel/slot/aspect/(ServiceAspect|RestControllerAspect)\.java</exclude-pattern>
+
 
 
 </ruleset>

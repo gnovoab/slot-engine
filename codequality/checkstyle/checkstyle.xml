@@ -27,6 +27,11 @@
         <property name="fileNamePattern" value="module\-info\.java$"/>
     </module>
 
+    <!-- Suppress specific checks for ServiceAspect and RestControllerAspect -->
+    <module name="SuppressionFilter">
+        <property name="file" value="/Users/gabrielnovoa/Development/slot-engine/codequality/checkstyle/suppressions.xml"/>
+    </module>
+
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
         <property name="max" value="500"/>

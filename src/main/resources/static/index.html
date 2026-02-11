@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruit Machine</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="title">Fruit Machine</div>
+      <div class="sub">Slot Engine UI</div>
+    </header>
+
+    <main class="main">
+      <section class="panel">
+        <div class="row">
+          <label class="field">
+            <span class="label">Game</span>
+            <select id="gameId" class="control">
+              <option value="1">Game 1</option>
+              <option value="2">Game 2</option>
+              <option value="3">Game 3</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="label">Reel Set</span>
+            <select id="spinType" class="control">
+              <option value="0">Base</option>
+            </select>
+          </label>
+
+          <button id="loadGame" class="btn secondary">Load</button>
+        </div>
+
+        <div class="row">
+          <label class="field">
+            <span class="label">Stake</span>
+            <select id="stake" class="control"></select>
+          </label>
+
+          <label class="field">
+            <span class="label">Lines</span>
+            <input id="lines" class="control" type="number" min="1" value="1" />
+          </label>
+
+          <label class="field">
+            <span class="label">Balance</span>
+            <input id="balance" class="control" type="number" min="0" value="1000" />
+          </label>
+
+          <button id="spin" class="btn primary">Spin</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="meta">
+          <div class="metaItem"><span class="metaLabel">Game Name</span><span id="gameName" class="metaValue">-</span></div>
+          <div class="metaItem"><span class="metaLabel">Max Lines</span><span id="maxLines" class="metaValue">-</span></div>
+          <div class="metaItem"><span class="metaLabel">Max Bet</span><span id="maxBet" class="metaValue">-</span></div>
+          <div class="metaItem"><span class="metaLabel">Last Tx</span><span id="tx" class="metaValue">-</span></div>
+        </div>
+      </section>
+
+      <section class="machine">
+        <div class="screen">
+          <div id="board" class="board" aria-label="slot board"></div>
+        </div>
+
+        <div class="result">
+          <div class="resultRow">
+            <div class="pill">Total Win: <span id="totalWin">0</span></div>
+            <div class="pill">Bet: <span id="totalBet">0</span></div>
+            <div class="pill">Net: <span id="net">0</span></div>
+          </div>
+          <div id="winLines" class="winLines"></div>
+        </div>
+
+        <div id="status" class="status"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

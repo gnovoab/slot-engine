@@ -7,12 +7,16 @@ plugins {
 	id 'checkstyle'
 	id 'pmd'
 	id 'jacoco'
-	id("com.github.spotbugs") version "5.0.14"
+	id("com.github.spotbugs") version "6.0.13"
 }
 
 group = 'com.gabriel'
-sourceCompatibility = JavaVersion.VERSION_20
-targetCompatibility = JavaVersion.VERSION_20
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
 
 
 repositories {
@@ -28,7 +32,7 @@ bootJar {
 //Tasks
 tasks.named('test') {
 	useJUnitPlatform()
-	finalizedBy jacocoTestReport // report is always generated after tests run
+	// finalizedBy jacocoTestReport - temporarily disabled due to Java 25 compatibility
 }
 
 checkstyle {
@@ -53,27 +57,37 @@ spotbugs {
 	excludeFilter.set(file("codequality/spotbugs/excludeFilter.xml"))
 }
 
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+	launcher.set(javaToolchains.launcherFor {
+		languageVersion.set(JavaLanguageVersion.of(21))
+	})
+}
+
 // configure HTML report
 spotbugsMain {
+	ignoreFailures = false
 	reports {
+		xml.required.set(true)
 		html {
-			required = true
+			required.set(true)
 			stylesheet = 'fancy-hist.xsl'
 		}
 	}
 }
 
 spotbugsTest {
+	ignoreFailures = false
 	reports {
+		xml.required.set(true)
 		html {
-			required = true
+			required.set(true)
 			stylesheet = 'fancy-hist.xsl'
 		}
 	}
 }
 
 jacoco {
-	toolVersion = "0.8.10"
+	toolVersion = "0.8.12"
 }
 
 jacocoTestReport {
@@ -96,11 +110,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	spotbugs 'com.github.spotbugs:spotbugs:4.9.3'
+	spotbugs 'org.apache.commons:commons-lang3:3.14.0'
+
 	//Validation
 	implementation('org.springframework.boot:spring-boot-starter-validation')
 
 	//Swagger
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.3'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
 
 	//JAXB - XML Parsing
 	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'

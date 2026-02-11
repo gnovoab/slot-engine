@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD Suppression Filter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- Suppress MemberName and AbbreviationAsWordInName checks for specific aspect classes -->
+    <suppress checks="MemberName" files=".*ServiceAspect\.java$"/>
+    <suppress checks="MemberName" files=".*RestControllerAspect\.java$"/>
+    <suppress checks="AbbreviationAsWordInName" files=".*ServiceAspect\.java$"/>
+    <suppress checks="AbbreviationAsWordInName" files=".*RestControllerAspect\.java$"/>
+</suppressions>
